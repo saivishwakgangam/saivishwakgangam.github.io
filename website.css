@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	box-sizing: border-box;
+
+}
+.navigation{
+	z-index: 999;
+	position: fixed;
+	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 30px 0;
+	transition: all 0.3s ease;
+}
+.navigation.scroll{
+	background:#800000;
+	padding:10px 0;
+}
+.navigation .max{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.max{
+	max-width: 1300px;
+	padding: 30px;
+	margin: auto;
+}
+.navigation .intro a{
+	font-size: 30px;
+	font-weight: 600;
+	color: #fff;
+}
+.navigation .menu li{
+	display: inline-block;
+	list-style: none;
+
+}
+.navigation .menu li a{
+	color: #fff;
+	font-size: 20px;
+	font-weight: 500;
+    margin-left: 25px;
+    transition: color 0.3s ease;
+}
+.navigation .menu1{
+	display: none;
+}
+.home_page{
+	display: flex;
+	background: url("black3.jpg") no-repeat center;
+	height: 100vh;
+	color: #fff;
+	min-height: 500px;
+	font-family: Arial, Helvetica, sans-serif;
+
+
+}
+.navigation .menu li a:hover{
+color: #DC143C;
+}
+.home_page .max{
+}
+.home_page .content .text1{
+	font-size: 75px;
+}
+.home_page .content .text2{
+	font-size: 40px;
+	padding-right:10px;
+	text-align: center;
+}
+.home_page .content .text3 a{
+	display: inline-block;
+	font-size: 30px;
+	padding: 12px 36px;
+	background: #DC143C;
+	color:#fff;
+	margin-top: 20px;
+
+}
+section{
+	padding:100px 0;
+}
+.aboutme{
+	font-family: 'Poppins',sans-serif;
+}
+.aboutme .title{
+	text-align: center;
+	font-size: 40px;
+	font-weight: 500;
+	margin-bottom: 60px;
+	padding: 10px;
+	font-family: 'Ubuntu',sans-serif;
+}
+.aboutme .about_content
+{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+}
+.aboutme .about_content .left
+{
+   width: 45%;
+}
+.aboutme .about_content .left img{
+	max-width: 100%;
+    height: auto;
+    width: 500px;
+   object-fit: cover;
+   border-radius: 6px;
+}
+.aboutme .about_content .right
+{
+   width: 45%;
+}
+.aboutme .about_content .right .text1 span
+{
+   color: #DC143C;
+}
+.aboutme .about_content .right .text1
+{
+	font-size: 25px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.aboutme .about_content .right .text1 p
+{
+	text-align: justify;
+}
+.education{
+	font-family: 'Poppins',sans-serif;
+}
+.education .about_edu
+{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+}
+.education .title{
+	text-align: center;
+	font-size: 40px;
+	font-weight: 500;
+	margin-bottom: 60px;
+	padding: 20px;
+	font-family: 'Ubuntu',sans-serif;
+}
+.education .about_edu .left .icon1
+{
+   width: 45%;
+}
+.education .about_edu .left .icon1 .image img{
+	max-width: 100%;
+    height: auto;
+    width: 400px;
+   object-fit: cover;
+   border-radius: 6px;
+
+}
+
+.education .about_edu .right .edu1{
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.education .about_edu .edu1{
+    width: 55%;
+}
+.education .about_edu .right .edu1 p{
+	text-align: justify;
+}
+.educarion .about_edu .left .icon2{
+	width: 45%;
+}
+.education .about_edu .left .icon2 .image1 img{
+	margin-top: 100px;
+	margin-left: 50px;
+	max-width: 100%;
+    height: auto;
+    width: 300px;
+   object-fit: cover;
+   border-radius: 6px;
+}
+.education .about_edu .right .edu2{
+	width: 55%;
+}
+.education .about_edu .right .edu2{
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.education .about_edu .right .edu2 p{
+	text-align: justify;
+}
+.skills{
+	font-family: 'Poppins',sans-serif;
+}
+.skills .title{
+	text-align: center;
+	font-size: 40px;
+	font-weight: 500;
+	margin-bottom: 60px;
+	padding: 20px;
+	font-family: 'Ubuntu',sans-serif;
+
+}
+.skills .skillbar{
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+.skills .skillbar .info
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.skills .skillbar .info span
+{
+	font-weight: 600;
+	font-size:20px;
+}
+.skills .skillbar .lHTML
+{
+	height: 5px;
+	width: 90%;
+	background: #43A6C6;
+	position: relative;
+}
+.skills .skillbar .lc
+{
+	height: 5px;
+	width: 95%;
+	background: #43A6C6;
+	position: relative;
+}
+.skills .skillbar .lcpp
+{
+	height: 5px;
+	width: 85%;
+	background: #43A6C6;
+	position: relative;
+}
+.skills .skillbar .ljava
+{
+	height: 5px;
+	width: 65%;
+	background: #43A6C6;
+	position: relative;
+}
+.skills .skillbar .lCSS
+{
+	height: 5px;
+	width: 80%;
+	background: #43A6C6;
+	position: relative;
+}
+.skills .skillbar .lJAVASCRIPT
+{
+	height: 5px;
+	width: 60%;
+	background: #43A6C6;
+	position: relative;
+}
+.skills .skillbar .lSQL
+{
+	height: 5px;
+	width: 80%;
+	background: #43A6C6;
+	position: relative;
+}
+/*.skills .skillbar .l{
+	content: "";
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: #DC143C;
+}*/
+.HOBBIES .container1{
+	font-family: 'Poppins',sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+
+}
+.HOBBIES .container1 .container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.HOBBIES .container1 .container .box{
+	position: relative;
+	width: 400px;
+	padding: 40px;
+	background: #fff;
+	box-shadow: 0 5px 15px rgba(0,0,0);
+	border-radius: 4px;
+    margin: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.HOBBIES .container1 .container .box .icon1{
+ position: relative;
+ width: 80px;
+ height: 80px;
+ color: #fff;
+ background: #000;
+ background: url("coding.webp")no-repeat center;
+}
+.HOBBIES .container1 .container .box .icon2{
+ position: relative;
+ width: 80px;
+ height: 80px;
+ color: #fff;
+ background: #000;
+ background: url("music.png")no-repeat center;
+}
+.HOBBIES .container1 .container .box .icon3{
+ position: relative;
+ width: 120px;
+ height: 120px;
+ color: #fff;
+ background: #000;
+ background: url("tv.png")no-repeat center;
+}
+.HOBBIES .title{
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 40px;
+	font-weight: 500;
+	padding: 20px;
+	font-family: 'Ubuntu',sans-serif;
+
+}
+.contact .title{
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 40px;
+	font-weight: 500;
+	padding: 20px;
+	font-family: 'Ubuntu',sans-serif;
+
+}
+.contact .contact_content
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.contact .contact_content .icon1{
+    
+    padding: 20px;
+}
+.contact .contact_content .icon2{
+    
+    padding: 20px;
+}
+.contact .contact_content .icon3{
+    
+    padding: 20px;
+}
+.navigation .btn{
+	 color: #fff;
+	 font-size: 23px;
+	 cursor: pointer;
+	 display: none;
+}
+@media (max-width: 990px)
+{
+   .navigation .max{
+   	padding:0 50px;
+   }
+   .navigation .btn{
+   	display: block;
+   	z-index: 999;
+   }
+   .navigation .menu{
+   	position: fixed;
+   	height: 100vh;
+   	width: 100%;
+   	left: -100%;
+   	top: 0;
+   	background:#111;
+   	text-align: center;
+   	padding-top: 80px;
+   	transition: color 0.3s ease;
+   }
+   .navigation .btn i.active:before{
+        content: "\f00d";
+    }
+   .navigation .menu.active{
+        left: 0;
+    }
+   .navigation .menu li{
+   	display: block;
+   }
+   .navigation .menu li .a{
+   	display: inline-block;
+   	margin: 20px 0;
+   	font-size: 25px;
+   }
+   .aboutme .about_content .left{
+   	display: flex;
+   	justify-content: center;
+   	margin: 0 auto 60px;
+   }
+   .aboutme .about_content .right{
+   	flex: 100%;
+   }
+   .education .about_edu .icon1 .image{
+   	display: flex;
+   	justify-content: center;
+   	margin: 0 auto 60px;
+   }
+   .education .about_edu .edu1
+   {
+   	flex: 100%;
+   }
+   .education .about_edu .icon1 .image1{
+   	display: flex;
+   	justify-content: center;
+   	margin: 0 auto 60px;
+   }
+
+}
+@media (max-width: 500px)
+{
+	.aboutme .about_content .right .text1{
+		font-size: 19px;
+	}
+	.education .about_edu .edu1 
+    {
+		width:800px; 
+		margin:0 auto;
+	}
+    .education .about_edu .edu2
+    {
+    	width:800px; 
+		margin:0 auto;
+    } 
+
+}
+
+
+
+
+
+
+

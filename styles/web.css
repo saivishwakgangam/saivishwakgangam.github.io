@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+/* This CSS is applied to all HTML elements */
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;/* border box by default includes padding size border size and element size*/
+}
+
+.navigation{
+    z-index: 999; /* It specifies the stack order of element -> navigation should be present overall scrolling*/
+    position: fixed;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 0;
+    background: black;
+}
+.navigation .max{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.max{
+    max-width: 1300px;
+    padding: 30px;
+    margin: auto;
+}
+.navigation .max .intro a{
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+}
+.navigation .menu .li{
+    display: inline-block;
+    list-style: none;
+}
+.navigation .menu .li a{
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 25px;
+    
+    
+}
+section{
+    padding: 100px 0;
+}
+.home_page{
+  display: flex;
+  background: url("../images/black3.jpg") no-repeat center;
+  height: 100vh;
+  color: white;
+  min-height: 500px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.home_page .max .text1{
+    font-size: 75px;
+}
+.home_page .max .text2{
+    font-size: 40px;
+    padding-right: 10px;
+    text-align: center;
+}
+.heading{
+    text-align: center;
+    font-size: 30px;
+    color: red;
+}
+.aboutme .about_container{
+    column-count: 2;
+    column-gap: 40px;
+    column-rule: 4px dotted black;
+}
+.aboutme .heading h1{
+    padding: 100px 0px;
+    margin-bottom: 100px;
+}
+.aboutme .about_container .img1 img{
+    max-width: 100%;
+    height: 500px;
+    width: 500px;
+    margin-left: 30px;
+}
+.about_text{
+    margin-left: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding-top: 100px;
+    text-align: justify;
+    margin-right: 20px;
+    line-height: 1.6;
+}
+.education .education_container1{
+    column-count: 2;
+    column-gap: 40px;
+    column-rule: 4px dotted blue;
+    margin-bottom: 20px;
+}
+
+.education .education_container2{
+    column-count: 2;
+    column-gap: 40px;
+    column-rule: 4px dotted blue;
+}
+
+.education .heading h1{
+    padding: 100px 0px;
+    margin-bottom: 100px;
+}
+.education .img2 img{
+    max-width: 100%;
+    height: 400px;
+    width: 400px;
+    margin-left: 100px;
+    margin-bottom: 100px;
+}
+
+/* GRID LAYOUT STYLING STARTS */
+.projects .grid_project{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 40px;
+    align-content: center;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+
+.projects .grid_project .proj {
+    border: 2px solid black;
+    background-color: #f2f3f5;   
+    
+}
+
+.projects .grid_project .proj .proj_heading{
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.projects .grid_project .proj .proj_text{
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 20px 20px;
+    text-align: justify;
+    line-height: 1.3;
+    
+
+}
+
+/* Hobbies Styling Starts */
+
+.hobbies .hobbies_project{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-auto-columns: minmax(50px,auto);
+    gap: 40px;
+    align-content: center;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+
+.hobbies .hobbies_project .proj{
+    border: 2px solid black;
+    background-color: #f2f3f5;
+
+}
+
+.hobbies .hobbies_project .proj .proj_heading{
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.hobbies .hobbies_project .proj .proj_text{
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 20px 20px;
+    text-align: justify;
+    line-height: 1.3;
+}
+
+
+
+
+
+
+
+
+

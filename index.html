@@ -1,161 +1,626 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>vishwak.log</title>
+    <meta name="description" content="computer science · software engineering · fiction · thoughts" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/atom+xml" title="vishwak.log" href="/feed.xml" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-	<title>Sai Vishwak Gangam</title>
-	<link rel="stylesheet" type="text/css" href="website.css"> 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet"
+    />
+    <style>
+        /* =========================================================
+           vishwak.log — terminal aesthetic
+           palette: warm "phosphor on warm-black", not neon.
+           ========================================================= */
 
+        :root {
+            --bg: #16120c;
+            --bg-2: #1f1a13;
+            --fg: #e8e0d2;
+            --fg-dim: #9b9384;
+            --amber: #e0a85e;
+            --amber-soft: #d8b483;
+            --green: #8faa6a;
+            --rule: #2c2619;
+            --rule-soft: #221d14;
+
+            --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+            Consolas, monospace;
+            --sans: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+            --measure: 68ch;
+            --pad: clamp(1.1rem, 4vw, 2rem);
+        }
+
+        /* ---------- reset ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--sans);
+            font-size: 17px;
+            line-height: 1.65;
+            letter-spacing: 0.01em;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* terminal-style text selection: invert to amber */
+        ::selection {
+            background: var(--amber);
+            color: var(--bg);
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 860px;
+            margin-inline: auto;
+            padding-inline: var(--pad);
+        }
+
+        main.wrap {
+            flex: 1 0 auto;
+            padding-block: clamp(2.5rem, 7vw, 4.5rem);
+        }
+
+        a {
+            color: var(--amber);
+            text-decoration: none;
+            border-bottom: 1px solid color-mix(in srgb, var(--amber) 40%, transparent);
+            transition: background-color 0.12s ease, color 0.12s ease,
+            border-color 0.12s ease;
+        }
+        /* hover/focus inverts like a highlighted terminal token */
+        a:hover,
+        a:focus-visible {
+            background: var(--amber);
+            color: var(--bg);
+            border-color: var(--amber);
+            outline: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--amber);
+            outline-offset: 2px;
+        }
+
+        .skip {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--amber);
+            color: var(--bg);
+            padding: 0.5rem 0.9rem;
+            border: 0;
+        }
+        .skip:focus {
+            left: 0.5rem;
+            top: 0.5rem;
+            z-index: 1000;
+        }
+
+        .comment {
+            color: var(--fg-dim);
+        }
+
+        /* ---------- top bar ---------- */
+        .topbar {
+            border-bottom: 1px solid var(--rule);
+            background: color-mix(in srgb, var(--bg) 90%, black);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(6px);
+        }
+        .topbar__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-block: 0.85rem;
+            flex-wrap: wrap;
+        }
+        .prompt {
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 0;
+            white-space: nowrap;
+        }
+        .prompt:hover,
+        .prompt:focus-visible {
+            background: transparent;
+            color: inherit;
+        }
+        .prompt__user {
+            color: var(--green);
+        }
+        .prompt__at,
+        .prompt__path {
+            color: var(--fg-dim);
+        }
+        .prompt__host {
+            color: var(--amber);
+        }
+        .prompt__sym {
+            color: var(--fg);
+            margin-left: 0.35ch;
+        }
+        .prompt:hover .prompt__host {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.1rem;
+            font-family: var(--mono);
+            font-size: 0.9rem;
+        }
+        .nav a {
+            border-bottom: 0;
+            color: var(--fg-dim);
+            padding: 0.1rem 0.1rem;
+        }
+        .nav a:hover,
+        .nav a:focus-visible {
+            color: var(--bg);
+            background: var(--amber);
+        }
+
+        /* ---------- shell session blocks ---------- */
+        .session {
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        .session .line {
+            color: var(--fg);
+            margin-bottom: 0.35rem;
+        }
+        .session .ps1 {
+            color: var(--green);
+            margin-right: 0.6ch;
+        }
+        .session .out {
+            color: var(--fg-dim);
+            max-width: var(--measure);
+            margin: 0.2rem 0 1.4rem;
+            line-height: 1.6;
+        }
+
+        .cursor {
+            color: var(--amber);
+            margin-left: 0.4ch;
+            animation: blink 1.1s steps(1) infinite;
+        }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ---------- file listing (post lists) ---------- */
+        .filelist {
+            list-style: none;
+            font-family: var(--mono);
+            border-top: 1px solid var(--rule-soft);
+        }
+        .filelist__row {
+            border-bottom: 1px solid var(--rule-soft);
+        }
+        .filelist__link {
+            display: grid;
+            grid-template-columns: 6.5rem 1fr auto;
+            gap: 0.5rem 1.2rem;
+            align-items: baseline;
+            padding: 0.85rem 0.4rem;
+            border: 0;
+            color: var(--fg);
+        }
+        .filelist__link:hover,
+        .filelist__link:focus-visible {
+            background: var(--bg-2);
+            color: var(--fg);
+        }
+        .filelist__link:hover .filelist__name {
+            color: var(--amber);
+        }
+        .filelist__date {
+            color: var(--fg-dim);
+            font-size: 0.82rem;
+        }
+        .filelist__name {
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: 1.02rem;
+        }
+        .filelist__cat {
+            color: var(--green);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .filelist__desc {
+            font-family: var(--sans);
+            color: var(--fg-dim);
+            font-size: 0.92rem;
+            padding: 0 0.4rem 0.95rem;
+            max-width: var(--measure);
+            margin-top: -0.3rem;
+        }
+
+        .hero__more {
+            margin-top: 1.6rem;
+            font-family: var(--mono);
+            font-size: 0.95rem;
+        }
+
+        /* ---------- filter bar (archive) ---------- */
+        .filterbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.3rem 0 1.8rem;
+        }
+        .flag {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--fg-dim);
+            background: transparent;
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            transition: all 0.12s ease;
+        }
+        .flag:hover {
+            color: var(--amber);
+            border-color: color-mix(in srgb, var(--amber) 50%, transparent);
+        }
+        .flag.is-active {
+            color: var(--bg);
+            background: var(--amber);
+            border-color: var(--amber);
+        }
+
+        /* ---------- post / page ---------- */
+        .post__crumb {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            margin-bottom: 1.4rem;
+        }
+        .post__crumb a {
+            border-bottom: 0;
+            color: var(--fg-dim);
+        }
+        .post__crumb a:hover {
+            background: var(--amber);
+            color: var(--bg);
+        }
+        .post__head {
+            margin-bottom: 2.2rem;
+        }
+        .post__title {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            color: var(--fg);
+        }
+        .post__meta {
+            margin-top: 0.8rem;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--fg-dim);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .post__meta .dot {
+            opacity: 0.5;
+        }
+        .post__tags {
+            display: inline-flex;
+            gap: 0.6rem;
+        }
+        .tag {
+            color: var(--green);
+            border-bottom: 0;
+        }
+        .tag:hover {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        /* ---------- prose ---------- */
+        .prose {
+            max-width: var(--measure);
+        }
+        .prose > * + * {
+            margin-top: 1.15rem;
+        }
+        .prose h2 {
+            font-family: var(--sans);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-top: 2.4rem;
+            color: var(--fg);
+            letter-spacing: -0.01em;
+        }
+        .prose h2::before {
+            content: "## ";
+            color: var(--green);
+            font-family: var(--mono);
+            font-weight: 500;
+        }
+        .prose h3 {
+            font-family: var(--sans);
+            font-size: 1.12rem;
+            font-weight: 600;
+            margin-top: 1.8rem;
+        }
+        .prose h3::before {
+            content: "### ";
+            color: var(--green);
+            font-family: var(--mono);
+        }
+        .prose p,
+        .prose li {
+            color: var(--fg);
+        }
+        .prose strong {
+            color: var(--amber-soft);
+            font-weight: 600;
+        }
+        .prose ul,
+        .prose ol {
+            padding-left: 1.4rem;
+        }
+        .prose li + li {
+            margin-top: 0.5rem;
+        }
+        .prose ul li::marker {
+            color: var(--green);
+        }
+        .prose blockquote {
+            border-left: 2px solid var(--amber);
+            padding: 0.2rem 0 0.2rem 1.1rem;
+            color: var(--fg-dim);
+            font-style: italic;
+        }
+        .prose a {
+            text-underline-offset: 3px;
+        }
+
+        /* inline + block code */
+        .prose :not(pre) > code {
+            font-family: var(--mono);
+            font-size: 0.86em;
+            background: var(--bg-2);
+            color: var(--amber-soft);
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            border: 1px solid var(--rule);
+        }
+        .prose pre {
+            font-family: var(--mono);
+            font-size: 0.86rem;
+            line-height: 1.6;
+            background: var(--bg-2);
+            border: 1px solid var(--rule);
+            border-left: 2px solid var(--green);
+            border-radius: 4px;
+            padding: 1rem 1.1rem;
+            overflow-x: auto;
+        }
+        .prose pre code {
+            background: none;
+            border: 0;
+            padding: 0;
+            color: var(--fg);
+        }
+
+        /* ---------- prev / next ---------- */
+        .post__nav {
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            font-family: var(--mono);
+            font-size: 0.9rem;
+        }
+        .post__nav-link {
+            border-bottom: 0;
+            color: var(--fg);
+            padding: 0.4rem 0;
+        }
+        .post__nav-link .comment {
+            font-size: 0.8rem;
+        }
+        .post__nav-link:hover {
+            background: transparent;
+            color: var(--amber);
+        }
+        .post__nav-link.next {
+            text-align: right;
+        }
+
+        /* ---------- footer ---------- */
+        .footer {
+            flex-shrink: 0;
+            border-top: 1px solid var(--rule);
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--fg-dim);
+            padding-block: 1.6rem;
+            margin-top: 3rem;
+        }
+        .footer__inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.5rem;
+            align-items: baseline;
+        }
+        .footer__links {
+            display: flex;
+            gap: 1rem;
+        }
+        .footer__links a {
+            color: var(--fg-dim);
+            border-bottom: 0;
+        }
+        .footer__links a:hover {
+            color: var(--bg);
+            background: var(--amber);
+        }
+        .footer__meta {
+            margin-left: auto;
+        }
+
+        /* ---------- syntax highlight (Prism) tuned to palette ---------- */
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+            color: var(--fg-dim);
+            font-style: italic;
+        }
+        .token.punctuation {
+            color: #b7ad99;
+        }
+        .token.keyword,
+        .token.boolean,
+        .token.atrule {
+            color: var(--amber);
+        }
+        .token.function,
+        .token.class-name {
+            color: #e8c07a;
+        }
+        .token.string,
+        .token.char,
+        .token.attr-value {
+            color: var(--green);
+        }
+        .token.number,
+        .token.constant {
+            color: #d59b6b;
+        }
+        .token.operator,
+        .token.tag {
+            color: #c9bfa8;
+        }
+        .token.comment {
+            color: #7c715a;
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 620px) {
+            body {
+                font-size: 16px;
+            }
+            .filelist__link {
+                grid-template-columns: 1fr;
+                gap: 0.15rem;
+                padding-block: 1rem;
+            }
+            .filelist__cat {
+                order: 3;
+            }
+            .post__nav {
+                grid-template-columns: 1fr;
+            }
+            .post__nav-link.next {
+                text-align: left;
+            }
+            .footer__meta {
+                margin-left: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cursor {
+                animation: none;
+            }
+            * {
+                transition: none !important;
+            }
+        }
+
+    </style>
 </head>
 <body>
- <nav class="navigation">
- 	<div class="max">
- 		<div class="intro"><a href="#">SAI VISHWAK GANGAM</a> </div>
- 		<ul class="menu">
- 			<li class="li"><a href="#">HOME</a></li>
- 			<li class="li"><a href="#aboutme">ABOUT</a></li>
- 			<li class="li"><a href="#education">EDUCATION</a></li>
- 			<li class="li"><a href="#skills">SKILLS</a></li>
- 			<li class="li"><a href="#HOBBIES">HOBBIES</a></li>
- 		</ul>
- 		<div class="btn">
- 			<i class="fas fa-bars"></i>
- 		</div>
- 	</div>
- </nav>
- <section class="home_page">
- 	<div class="max">
- 		<div class="content">
- 		<div class="text1">Hola!!This is Vishwak</div>
- 		<br/>
- 		<div class="text2">Welcome to my Website</div>
- 		<br/>
- 		<!--<div class="text3">I am currently pursuing</div>
- 		<div class="text4">Mtech in Computer Science</div>
- 		<div class="text5">From IIIT Hyderabad</div>-->
- 	</div>
- 	</div>
- </section>
- <section class="aboutme" id="aboutme">
- 	<div class="max">
- 		<h2 class="title">ABOUT ME!!</h2>
- 		<div class="about_content">			
- 			<div class="left">
- 				<img src="myphoto.JPG">
- 			</div>
- 			<div class="right">
- 				<div class="text1">Hola!!This is <span>Vishwak</span>
- 				<p>I am currently pursuing Mtech in Computer Science and Information Security from IIIT, Hyderabad.I am interested in solving real world problems using Data Structures and Algorithms and i am also interested in Probability.I would like to explore machine learining domain of computer science and also improve my CODING skills.I hail from Warangal,Telangana.</p> </div>
- 			</div>
- 		</div>
- 	</div>
- </section>
- <section class="aboutme" id="education">
- 	<div class="max">
- 		<h2 class="title">EDUCATION</h2>
- 		<div class="about_content">
- 			<div class="left">
- 		    <img src="iiit-new.png">
- 		</div>
- 		<div class="right">
- 		<div class="text1"><p>I am in Mtech 1st year computer science and information security and expected to be graduating in 2022 ,until now the course work is challenging and learning a lot in this process,hoping a great 2 years ahead(Wish me luck!!)</p></div></div>
- 		<div class="left">
- 			<img src="KITSW_OfficiaLogo.png">
- 		</div>
- 		
- 		<div class="right"><div class="text1"><p>I have done my bachelors in Computer Science and Engineering and graduated in 2020(Still Not!!! hoping very soon).This college had made me to realise my interest in computer science and motivated me to pursue my career in hardcore computer science.I made some good friends here who were quite supportive during my 4 years journey.Teaching sucks here!!!(No offence)</p></div></div>
- 	</div>
- 	  </div>
- 	</div>
- </section>
- <section class="skills" id="skills">
- 	<div class="max">
- 		<h2 class="title">SKILLS</h2>
- 		<div class="skillbar">
- 			<div class="info">
- 				<span>C</span>
- 			    <span>95%</span>
- 			</div>
- 			<div class="lc"></div>
- 		</div>
-        <div class="skillbar">
-        	<div class="info">
-        		<span>C++</span>
-        		<span>85%</span>
-        	</div>
-        	<div class="lcpp"></div>
-        </div>
-        <div class="skillbar">
-        	<div class="info">
-        		<span>JAVA</span>
-        		<span>65%</span>
-        	</div>
-        	<div class="ljava"></div>
-        </div>
-        <div class="skillbar">
-        	<div class="info">
-        		<span>HTML</span>
-        		<span>90%</span>
-        	</div>
-        	<div class="lHTML"></div>
-        </div>
-        <div class="skillbar">
-        	<div class="info">
-        		<span>CSS</span>
-        		<span>80%</span>
-        	</div>
-        	<div class="lCSS"></div>
-        </div>
-        <div class="skillbar">
-        	<div class="info">
-        		<span>JAVA SCRIPT</span>
-        		<span>60%</span>
-        	</div>
-        	<div class="lJAVASCRIPT"></div>
-        </div>
-        <div class="skillbar">
-        	<div class="info">
-        		<span>SQL</span>
-        		<span>80%</span>
-        	</div>
-        	<div class="lSQL"></div>
-        </div>
- 			
- 	</div>
- </section>
- <section class="HOBBIES" id="HOBBIES">
- 	<h2 class="title">HOBBIES</h2>
- 	<div class="container1">
- 	<div class="container">
- 		
- 		<div class="box">
-          
-          <div class="content">
-          	<h3>CODING</h3>
-          	<p>CODING teaches us how to think and it is something which i want to be good at and do it lifelong.(Right now i am a noob XD)</p>
-          </div>
-      </div>
-      <div class="box">
-          
-          <div class="content">
-          	<h3>MUSIC</h3>
-          	<p>There is a saying that your favourite playlist enhances your mood and character so grab a cup a coffee put on your headphones and listen to your favourite playlist,everything else waits!!!</p>
-          </div>
-      </div>
-      <div class="box">
-          
-          <div class="content">
-          	<h3>Watch TV Series</h3>
-          	<p>My favourite genre is thriller and sitcom.Big bang theory is one of my favourites in sitcom genre and narcos in crime thriller genre!!</p>
-          </div>
-     </div>
+<a class="skip" href="#main">skip to content</a>
+<header class="topbar">
+    <div class="wrap topbar__inner">
+        <a class="prompt" href="/" aria-label="Home">
+            <span class="prompt__user">vishwak</span><span class="prompt__at">@</span><span class="prompt__host">blog</span><span class="prompt__path">:~</span><span class="prompt__sym">$</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+            <a href="/">~</a>
+            <a href="/posts/">./posts</a>
+            <a href="/about/">./about</a>
+        </nav>
+    </div>
+</header>
 
-</div>
+<main id="main" class="wrap">
+    <section class="hero">
+        <div class="session">
+            <p class="line"><span class="ps1">vishwak@blog:~$</span> whoami</p>
+            <p class="out">
+                Sai Vishwak Gangam — software engineer at Microsoft, based in Bengaluru.
+                I write about computer science, the craft of software, the fiction I'm reading,
+                and whatever else won't leave my head.
+            </p>
+            <p class="line"><span class="ps1">vishwak@blog:~$</span> ls ~/posts <span class="comment"># latest first</span><span class="cursor" aria-hidden="true">&#9608;</span></p>
+        </div>
 
- 	</div>
- </section>
- <script src="web.js"></script>
+        <ul class="filelist"><li class="filelist__row">
+        </li><li class="filelist__row">
+        </li><li class="filelist__row">
+        </li><li class="filelist__row">
+        </li><li class="filelist__row">
+        </li></ul>
+
+        <p class="hero__more">
+            <a href="/posts/">cd ~/posts &rarr;</a>
+        </p>
+    </section>
+
+</main>
+<footer class="footer">
+    <div class="wrap footer__inner">
+        <span class="footer__line"><span class="comment">$ whoami &mdash;</span> Sai Vishwak Gangam</span>
+        <span class="footer__links">
+      <a href="https://github.com/saivishwakgangam">github</a>
+    </span>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -1,2 +1,6 @@
+# Thoughts on *Good Will Hunting*
+
 I just completed watching Good Will Hunting movie and here are some stray thoughts i am having after the movie which i thought worth scribing. First of all i am a huge fan of Robin Williams acting i have watched dead poet society and really admired the way he pulled of each scene. 
 There are many scenes in this movie which depicts how life has to be lived. The quote from robin stating to matt "You are not perfect neither she is but both has to be perfect for each other" still stayed with me though i have never been in any serious relationship till date. This movie felt like an instant therapy for me. When robin asked Daemon what do you really want in life in a rhetorical way i was asking the same myself. Some movies like this are truly once in a lifetime masterpieces , these sort of movies often prove again and again why good art is rare find. 
+
+In the current times where there is a abundance of information , using right judgement and acting with a conviction rather than ceased with intent definitely has a higher reward and this movie which released in 1997 is making sense for me now

@@ -6,20 +6,6 @@ On paper, it's a Norwegian romantic comedy-drama that follows four years in the 
 
 I'm a Wong Kar-wai person. Give me longing, give me people drifting through beautiful spaces without knowing what they want, and I'm sold. Oslo is not Hong Kong, but this movie made me feel that same ache. I was awestruck by the cinematography. Every other shot felt like it deserved to be paused, screenshotted, and framed.
 
-So here's me bookkeeping some of my favourite shots from the film
-
-![](/Users/saivishwakgangam/WebstormProjects/saivishwakgangam.github.io/images/1.png)
-
-![](/Users/saivishwakgangam/WebstormProjects/saivishwakgangam.github.io/images/2.png)
-
-![](/Users/saivishwakgangam/WebstormProjects/saivishwakgangam.github.io/images/3.png)
-
-![](/Users/saivishwakgangam/WebstormProjects/saivishwakgangam.github.io/images/4.png)
-
-![](/Users/saivishwakgangam/WebstormProjects/saivishwakgangam.github.io/images/5.png)
-
-![](/Users/saivishwakgangam/WebstormProjects/saivishwakgangam.github.io/images/img_2.png)
-
 ### Cheating, but make it surreal
 
 I have seen cheating shown in cinema in a hundred ways , usually as a betrayal, scandal ,a plot device. Here it feels almost dreamlike. When julie met Eivind, nothing happens and yet a lot happens.

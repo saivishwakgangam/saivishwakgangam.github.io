@@ -6,14 +6,14 @@ On paper, it's a Norwegian romantic comedy-drama that follows four years in the 
 
 I'm a Wong Kar-wai person. Give me longing, give me people drifting through beautiful spaces without knowing what they want, and I'm sold. Oslo is not Hong Kong, but this movie made me feel that same ache. I was awestruck by the cinematography. Every other shot felt like it deserved to be paused, screenshotted, and framed.
 
-### Cheating, but make it surreal
+## Cheating, but make it surreal
 
 I have seen cheating shown in cinema in a hundred ways , usually as a betrayal, scandal ,a plot device. Here it feels almost dreamlike. When julie met Eivind, nothing happens and yet a lot happens.
 There is a stretch where two of them play at the edge of intimacy without technically crossing the line and somehow thats more charged any kiss or sex scene.
 
 Than comes the scene where time itself freezes Julie runs through a stopped city to get to him and its pure surrealism.
 
-## What stayed with me,,,
+## What stayed with me...
 
 To be honest I am struggling to put it into words and maybe that's the point of movie. I loved each and every frame of this movie , sometimes its funny than its devastating , than again its funny and than it ends.
 
